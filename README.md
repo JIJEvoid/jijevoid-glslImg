@@ -21,14 +21,12 @@ https://github.com/JIJEvoid/jijevoid-glslImg
 ```
    <template>
      <div class="hello">
-       <glslimg :img="img"></glslimg>
+       <glslimg :img="img" :type="type" :height="height" :width="width"></glslimg>
      </div>
    </template>
    
    <script>
-
-   import glslimg from '@jijevoid/glslimg';
-
+     import glslimg from '@jijevoid/glslimg'
    export default {
      name: 'HelloWorld',
      props: {
@@ -36,7 +34,10 @@ https://github.com/JIJEvoid/jijevoid-glslImg
      },
      data(){
        return{
-         img:require('./../assets/logo.png')//use yourself imgSrc
+         img:require('./../assets/logo.png'),
+         type:'wave',
+         height:100,
+         width:100,
        }
      },
      components:{
@@ -46,5 +47,34 @@ https://github.com/JIJEvoid/jijevoid-glslImg
      
      }
    }
-   </script>    
+   </script>   
 ```
+
+### params
+```
+img: {
+        type: String,
+        default: ''
+      },
+      height:{
+        type: Number,
+        default: 480,
+      },
+      width:{
+        type: Number,
+        default: 600,
+      },
+      type:{
+        type: String,
+        default: "imgShader",
+      },
+      customShader:{
+        type: String,
+        default: "",
+      },
+      loop:{
+        type:Boolean,
+        default:true,
+      }
+```
+
