@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <imgCanvas msg="Welcome to Your Vue.js App"/>
+    <imgCanvas :img="img"/>
   </div>
 </template>
 
@@ -11,6 +11,14 @@ export default {
   name: 'App',
   components: {
     imgCanvas
+  },
+  data(){
+    return{
+      img:require('./assets/logo.png')
+    }
+  },
+  mounted() {
+  
   }
 }
 </script>
