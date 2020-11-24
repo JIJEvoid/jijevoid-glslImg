@@ -5151,14 +5151,23 @@ var fs = "        void main(void) {\n" + "           vec4 vColor = vec4(1.0,1.0,
  */
 var wave_fs = "vec3 params = vec3(10.0, 0.1, 0.1);\n" + "        vec2 center = vec2(0.5, .5);\n" + "        float itime = u_time/3.0;\n" + "        float time =(itime - floor(itime));\n" + "        void main()\n" + "        {\n" + "            vec2 st = gl_FragCoord.xy/u_resolution;\n" + "            vec2 texCoord = st;\n" + "            float dist = distance(st, center);\n" + "            if ( (dist <= (time + params.z)) && (dist >= (time - params.z)) )\n" + "            {\n" + "                float diff = (dist - time);\n" + "                float powDiff = 1.0 - pow(abs(diff*params.x), params.y);\n" + "                float diffTime = diff  * powDiff;\n" + "                vec2 diffUV = normalize(st - center);\n" + "                texCoord = st + (diffUV * diffTime);\n" + "            }\n" + "            gl_FragColor = texture2D(u_tex0, texCoord);\n" + "        }";
 /* harmony default export */ var wave = (wave_fs);
+// CONCATENATED MODULE: ./src/glsl/imgShader/stroke/index.js
+/**
+ * Created by jijevoid on 2020/11/24
+ */
+var stroke_fs = "vec3 texsample( float x,  float y, in vec2 st)\n" + "      {\n" + "          vec2 uv = (st.xy+ vec2(x, y))/ u_resolution.xy;\n" + "          return texture2D(u_tex0, uv).rgb;\n" + "      }\n" + "      vec3 count(vec2 st)\n" + "      {\n" + "          vec3 sum = texsample(-1., -1., st) * -1.\n" + "          + texsample(-1.,  0., st) *-1.\n" + "          + texsample(-1.,  1., st) *-1.\n" + "          + texsample( 0., -1., st) *-1.\n" + "          + texsample( 0.,  0., st) * 9.\n" + "          + texsample( 0.,  1., st) *-1.\n" + "          + texsample( 1., -1., st) *-1.\n" + "          + texsample( 1.,  0., st) * -1.\n" + "          + texsample( 1.,  1., st) *-1.;\n" + "          return sum;\n" + "      }\n" + "      void main()\n" + "      {\n" + "          gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n" + "      }";
+console.log("fs is ----");
+console.log(stroke_fs);
+/* harmony default export */ var stroke = (stroke_fs);
 // CONCATENATED MODULE: ./src/glsl/imgShader/index.js
 /**
  * Created by jijevoid on 2020/11/24
  */
 
 
+
 var shaderType = 'imgShader';
-var gl_header = "#ifdef GL_ES\n        precision mediump float;\n        #endif\n        \n        uniform vec2 u_resolution;\n        uniform vec2 u_mouse;\n        uniform float u_time;\n        uniform sampler2D u_tex0;\n        uniform vec2 u_tex0Resolution;";
+var gl_header = " #ifdef GL_ES\n        precision highp float;\n        #endif\n        \n        uniform sampler2D u_tex0;\n        uniform vec2 u_resolution;\n        uniform vec2 u_tex0Resolution;\n        uniform vec2 u_mouse;\n        uniform float u_time;\n";
 var arr = [];
 
 function getShaderInstance(name, ctx) {
@@ -5171,6 +5180,7 @@ function getShaderInstance(name, ctx) {
 
 arr.push(getShaderInstance("light", light));
 arr.push(getShaderInstance("wave", wave));
+arr.push(getShaderInstance("stroke", stroke));
 /* harmony default export */ var imgShader = (arr);
 // CONCATENATED MODULE: ./src/glsl/index.js
 
