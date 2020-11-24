@@ -14,7 +14,7 @@ export default {
   },
   data(){
     return{
-      img:require('./assets/logo.png'),
+      img:require('./assets/juzi.jpg'),
       type:'stroke',
       height:100,
       width:100,
