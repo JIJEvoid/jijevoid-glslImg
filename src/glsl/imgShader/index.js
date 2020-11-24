@@ -21,11 +21,11 @@ function getShaderInstance(
 ){
   return {
     name:name,
-    ctx:ctx,
+    ctx:gl_header+ctx,
     type:shaderType
   }
 }
-arr.push(getShaderInstance("lightShader",gl_header+lightShader));
-arr.push(getShaderInstance("waveShader",gl_header+waveShader));
+arr.push(getShaderInstance("lightShader",lightShader));
+arr.push(getShaderInstance("waveShader",waveShader));
 
 export default arr;

@@ -19,6 +19,6 @@ let fs =
   "                vec2 diffUV = normalize(st - center);\n" +
   "                texCoord = st + (diffUV * diffTime);\n" +
   "            }\n" +
-  "            gl_FragColor = texture2D(u_tex0, texCoord*.85);\n" +
+  "            gl_FragColor = texture2D(u_tex0, texCoord);\n" +
   "        }";
 export default fs;
