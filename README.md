@@ -19,15 +19,6 @@ https://github.com/JIJEvoid/jijevoid-glslImg
 
 ### who to use
 ```
-   // 1.import component
-   import glslimg from '@jijevoid/glslimg'
-   
-   // 2.register in vue
-   components:{
-      glslimg
-   },
-
-   // 3. use it in html
    <template>
      <div class="hello">
        <glslimg :img="img"></glslimg>
@@ -35,7 +26,9 @@ https://github.com/JIJEvoid/jijevoid-glslImg
    </template>
    
    <script>
-     import glslimg from '@jijevoid/glslimg'
+
+   import glslimg from '@jijevoid/glslimg';
+
    export default {
      name: 'HelloWorld',
      props: {
@@ -43,7 +36,7 @@ https://github.com/JIJEvoid/jijevoid-glslImg
      },
      data(){
        return{
-         img:require('./../assets/logo.png')
+         img:require('./../assets/logo.png')//use yourself imgSrc
        }
      },
      components:{
