@@ -29,8 +29,29 @@ https://github.com/JIJEvoid/jijevoid-glslImg
 
    // 3. use it in html
    <template>
-     <div>
-       <glslimg></glslimg>
+     <div class="hello">
+       <glslimg :img="img"></glslimg>
      </div>
-   </template>     
+   </template>
+   
+   <script>
+     import glslimg from '@jijevoid/glslimg'
+   export default {
+     name: 'HelloWorld',
+     props: {
+       msg: String
+     },
+     data(){
+       return{
+         img:require('./../assets/logo.png')
+       }
+     },
+     components:{
+       glslimg
+     },
+     mounted() {
+     
+     }
+   }
+   </script>    
 ```
