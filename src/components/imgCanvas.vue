@@ -12,7 +12,7 @@
     mounted() {
       let el = this.$refs.canvasContainer;
       let shader = `
-      #ifdef GL_ES
+        #ifdef GL_ES
         precision mediump float;
         #endif
     
