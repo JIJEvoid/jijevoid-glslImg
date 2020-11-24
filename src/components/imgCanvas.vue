@@ -18,7 +18,6 @@
       
       let shader = GLSLINSTANCE[0].ctx;
       
-
       var sandbox = new GlslCanvas(el);
       sandbox.setUniform("u_tex0",this.img);
       sandbox.load(shader);
