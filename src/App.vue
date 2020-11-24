@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <imgCanvas :img="img"/>
+    <imgCanvas :img="img" :type="type" :height="height" :width="width"/>
   </div>
 </template>
 
@@ -14,7 +14,10 @@ export default {
   },
   data(){
     return{
-      img:require('./assets/logo.png')
+      img:require('./assets/logo.png'),
+      type:'stroke',
+      height:100,
+      width:100,
     }
   },
   mounted() {

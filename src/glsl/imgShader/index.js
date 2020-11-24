@@ -3,6 +3,7 @@
  */
 import lightShader from './light/index';
 import waveShader from './wave/index';
+import strokeShader from './stroke/index';
 
 const shaderType = 'imgShader';
 const gl_header = `#ifdef GL_ES
@@ -25,7 +26,8 @@ function getShaderInstance(
     type:shaderType
   }
 }
-arr.push(getShaderInstance("lightShader",lightShader));
-arr.push(getShaderInstance("waveShader",waveShader));
+arr.push(getShaderInstance("light",lightShader));
+arr.push(getShaderInstance("wave",waveShader));
+arr.push(getShaderInstance("stroke",strokeShader));
 
 export default arr;
