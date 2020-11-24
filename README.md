@@ -1,24 +1,19 @@
 # jijeimg
 
-## Project setup
+An img-canvas component base GLSL.
+
+## Project install
 ```
-yarn install
+npm i @jijevoid/glslimg
 ```
 
-### Compiles and hot-reloads for development
+### Program 
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+https://github.com/JIJEvoid/jijevoid-glslImg/issues/
 ```
 
-### Lints and fixes files
+### code source
 ```
-yarn lint
+https://github.com/JIJEvoid/jijevoid-glslImg
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
