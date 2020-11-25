@@ -7,6 +7,17 @@
 <script>
   import GlslCanvas from 'glslCanvas';
   import GLSLINSTANCE from './../glsl/index'
+
+  const gl_header = ` #ifdef GL_ES
+        precision highp float;
+        #endif
+        
+        uniform sampler2D u_tex0;
+        uniform vec2 u_resolution;
+        uniform vec2 u_tex0Resolution;
+        uniform vec2 u_mouse;
+        uniform float u_time;\n`;
+  
   export default {
     name: "glslImg",
     props: {
@@ -54,9 +65,9 @@
     mounted() {
       let el = this.$refs.canvasContainer;
       if(this.type!='customShader'){
-        this.shaderCtx = this.glslMaps.get(this.type)?this.glslMaps.get(this.type):GLSLINSTANCE[1].ctx;
+        this.shaderCtx = this.glslMaps.get(this.type)?gl_header+this.glslMaps.get(this.type):gl_header+GLSLINSTANCE[1].ctx;
       }else{
-        this.shaderCtx = this.customShader;
+        this.shaderCtx = gl_header+this.customShader;
       }
       var sandbox = new GlslCanvas(el);
       sandbox.setUniform("u_tex0",this.img);

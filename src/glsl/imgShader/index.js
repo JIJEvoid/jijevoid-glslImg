@@ -6,15 +6,7 @@ import waveShader from './wave/index';
 import strokeShader from './stroke/index';
 
 const shaderType = 'imgShader';
-const gl_header = ` #ifdef GL_ES
-        precision highp float;
-        #endif
-        
-        uniform sampler2D u_tex0;
-        uniform vec2 u_resolution;
-        uniform vec2 u_tex0Resolution;
-        uniform vec2 u_mouse;
-        uniform float u_time;\n`;
+
 
 let arr = [];
 function getShaderInstance(
@@ -22,7 +14,7 @@ function getShaderInstance(
 ){
   return {
     name:name,
-    ctx:gl_header+ctx,
+    ctx:ctx,
     type:shaderType
   }
 }

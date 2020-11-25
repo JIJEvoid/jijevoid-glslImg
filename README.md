@@ -7,7 +7,7 @@ An Vue img-canvas component base GLSL.
 npm i @jijevoid/glslimg
 ```
 
-### Program 
+### question 
 ```
 https://github.com/JIJEvoid/jijevoid-glslImg/issues/
 ```
@@ -52,7 +52,7 @@ https://github.com/JIJEvoid/jijevoid-glslImg
 
 ### params
 ```
-img: {
+      img: {
         type: String,
         default: ''
       },

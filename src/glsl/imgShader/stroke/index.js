@@ -23,7 +23,5 @@ let fs = "vec3 texsample( float x,  float y, in vec2 st)\n" +
   "      {\n" +
   "          gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n" +
   "      }"
-console.log("fs is ----");
-console.log(fs);
 export default fs;
 
