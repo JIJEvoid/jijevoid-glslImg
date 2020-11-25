@@ -16,8 +16,8 @@ export default {
     return{
       img:require('./assets/juzi.jpg'),
       type:'customShader',
-      height:400,
-      width:400,
+      height:800,
+      width:800,
       customShader:`mat2 rot(in float a){float c = cos(a), s = sin(a);return mat2(c,s,-s,c);}
       const mat3 m3 = mat3(0.33338, 0.56034, -0.71817, -0.87887, 0.32651, -0.15323, 0.15162, 0.69596, 0.61339)*1.93;
       float mag2(vec2 p){return dot(p,p);}

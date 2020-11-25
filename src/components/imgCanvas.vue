@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas ref="canvasContainer" :height="`${height}px`"  :width="`${width}px`"></canvas>
+    <canvas ref="canvasContainer" :height="`${height}`"  :width="`${width}`"></canvas>
   </div>
 </template>
 
@@ -27,12 +27,12 @@
         default: ''
       },
       height:{
-        type: Number,
-        default: 480,
+        type: String,
+        default: 480+'px',
       },
       width:{
-        type: Number,
-        default: 600,
+        type: String,
+        default: 600+'px',
       },
       type:{
         type: String,

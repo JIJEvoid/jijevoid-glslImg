@@ -1,0 +1,10 @@
+*~
+.DS_Store
+node_modules/*
+node_modules
+src/*
+babel.config.js
+*.json
+*.html
+public/*
+public
