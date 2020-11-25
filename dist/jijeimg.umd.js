@@ -3442,12 +3442,12 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c6dc6cb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=0131e426&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c6dc6cb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=14d9785a&scoped=true&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('canvas',{ref:"canvasContainer",attrs:{"height":(_vm.height + "px"),"width":(_vm.width + "px")}})])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=0131e426&scoped=true&
+// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=14d9785a&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
 var es_array_iterator = __webpack_require__("e260");
@@ -5165,8 +5165,6 @@ var wave_fs = "vec3 params = vec3(10.0, 0.1, 0.1);\n" + "        vec2 center = v
  * Created by jijevoid on 2020/11/24
  */
 var stroke_fs = "vec3 texsample( float x,  float y, in vec2 st)\n" + "      {\n" + "          vec2 uv = (st.xy+ vec2(x, y))/ u_resolution.xy;\n" + "          return texture2D(u_tex0, uv).rgb;\n" + "      }\n" + "      vec3 count(vec2 st)\n" + "      {\n" + "          vec3 sum = texsample(-1., -1., st) * -1.\n" + "          + texsample(-1.,  0., st) *-1.\n" + "          + texsample(-1.,  1., st) *-1.\n" + "          + texsample( 0., -1., st) *-1.\n" + "          + texsample( 0.,  0., st) * 9.\n" + "          + texsample( 0.,  1., st) *-1.\n" + "          + texsample( 1., -1., st) *-1.\n" + "          + texsample( 1.,  0., st) * -1.\n" + "          + texsample( 1.,  1., st) *-1.;\n" + "          return sum;\n" + "      }\n" + "      void main()\n" + "      {\n" + "          gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n" + "      }";
-console.log("fs is ----");
-console.log(stroke_fs);
 /* harmony default export */ var stroke = (stroke_fs);
 // CONCATENATED MODULE: ./src/glsl/imgShader/index.js
 /**
@@ -5176,13 +5174,12 @@ console.log(stroke_fs);
 
 
 var shaderType = 'imgShader';
-var gl_header = " #ifdef GL_ES\n        precision highp float;\n        #endif\n        \n        uniform sampler2D u_tex0;\n        uniform vec2 u_resolution;\n        uniform vec2 u_tex0Resolution;\n        uniform vec2 u_mouse;\n        uniform float u_time;\n";
 var arr = [];
 
 function getShaderInstance(name, ctx) {
   return {
     name: name,
-    ctx: gl_header + ctx,
+    ctx: ctx,
     type: shaderType
   };
 }
@@ -5217,6 +5214,7 @@ GLSLINSTANCE = GLSLINSTANCE.concat(imgShader);
 //
 
 
+var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
 /* harmony default export */ var imgCanvasvue_type_script_lang_js_ = ({
   name: "glslImg",
   props: {
@@ -5266,9 +5264,9 @@ GLSLINSTANCE = GLSLINSTANCE.concat(imgShader);
     var el = this.$refs.canvasContainer;
 
     if (this.type != 'customShader') {
-      this.shaderCtx = this.glslMaps.get(this.type) ? this.glslMaps.get(this.type) : glsl[1].ctx;
+      this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.glslMaps.get(this.type) : gl_header + glsl[1].ctx;
     } else {
-      this.shaderCtx = this.customShader;
+      this.shaderCtx = gl_header + this.customShader;
     }
 
     var sandbox = new GlslCanvas_es(el);
@@ -5392,7 +5390,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "0131e426",
+  "14d9785a",
   null
   
 )
