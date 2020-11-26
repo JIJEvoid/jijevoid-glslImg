@@ -1,6 +1,6 @@
 {
   "name": "@jijevoid/glslimg",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "main": "./dist/jijeimg.common.js",
   "scripts": {
@@ -15,11 +15,7 @@
     "vue": "^2.6.11"
   },
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

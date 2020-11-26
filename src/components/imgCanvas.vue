@@ -54,6 +54,7 @@
         // glslImg map表
         glslMaps:new Map(),
         //
+        glslInstance:null,
       }
     },
     created(){
@@ -62,6 +63,7 @@
         this.glslMaps.set(GLSLINSTANCE[i].name,GLSLINSTANCE[i].ctx)
       }
     },
+    
     mounted() {
       let el = this.$refs.canvasContainer;
       if(this.type!='customShader'){
@@ -70,8 +72,10 @@
         this.shaderCtx = gl_header+this.customShader;
       }
       var sandbox = new GlslCanvas(el);
+      this.glslInstance = sandbox;
       sandbox.setUniform("u_tex0",this.img);
       sandbox.load(this.shaderCtx);
+      
     }
   }
 </script>

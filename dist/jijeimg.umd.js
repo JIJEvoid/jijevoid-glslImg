@@ -3311,12 +3311,12 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c6dc6cb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=e512a946&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c6dc6cb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=778ef349&scoped=true&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('canvas',{ref:"canvasContainer",attrs:{"height":("" + _vm.height),"width":("" + _vm.width)}})])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=e512a946&scoped=true&
+// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=778ef349&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
 var es_array_iterator = __webpack_require__("e260");
@@ -5114,8 +5114,9 @@ var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n    
       // glsl 代码
       shaderCtx: '',
       // glslImg map表
-      glslMaps: new Map() //
-
+      glslMaps: new Map(),
+      //
+      glslInstance: null
     };
   },
   created: function created() {
@@ -5135,6 +5136,7 @@ var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n    
     }
 
     var sandbox = new GlslCanvas_es(el);
+    this.glslInstance = sandbox;
     sandbox.setUniform("u_tex0", this.img);
     sandbox.load(this.shaderCtx);
   }
@@ -5255,7 +5257,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "e512a946",
+  "778ef349",
   null
   
 )
