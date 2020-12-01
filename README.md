@@ -77,4 +77,9 @@ https://github.com/JIJEvoid/jijevoid-glslImg
         default:true,
       }
 ```
+### about shaderType
+有如下几种type
+1 固定shader
+
+2 自定义shader
 
