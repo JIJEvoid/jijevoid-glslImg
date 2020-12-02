@@ -3,9 +3,10 @@
  */
 import imgList from './imgShader/index';
 
+console.log(imgList);
 let GLSLINSTANCE=[];
 
-GLSLINSTANCE = GLSLINSTANCE.concat(imgList);
+GLSLINSTANCE = imgList;
 
 export default GLSLINSTANCE;
 

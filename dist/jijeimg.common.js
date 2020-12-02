@@ -5023,10 +5023,17 @@ var wave_fs = "vec3 params = vec3(10.0, 0.1, 0.1);\n" + "        vec2 center = v
  */
 var stroke_fs = "vec3 texsample( float x,  float y, in vec2 st)\n" + "      {\n" + "          vec2 uv = (st.xy+ vec2(x, y))/ u_resolution.xy;\n" + "          return texture2D(u_tex0, uv).rgb;\n" + "      }\n" + "      vec3 count(vec2 st)\n" + "      {\n" + "          vec3 sum = texsample(-1., -1., st) * -1.\n" + "          + texsample(-1.,  0., st) *-1.\n" + "          + texsample(-1.,  1., st) *-1.\n" + "          + texsample( 0., -1., st) *-1.\n" + "          + texsample( 0.,  0., st) * 9.\n" + "          + texsample( 0.,  1., st) *-1.\n" + "          + texsample( 1., -1., st) *-1.\n" + "          + texsample( 1.,  0., st) * -1.\n" + "          + texsample( 1.,  1., st) *-1.;\n" + "          return sum;\n" + "      }\n" + "      void main()\n" + "      {\n" + "          gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n" + "      }";
 /* harmony default export */ var stroke = (stroke_fs);
+// CONCATENATED MODULE: ./src/glsl/imgShader/mosaic/index.js
+/**
+ * Created by jijevoid on 2020/12/1
+ */
+var mosaic_fs = "float u_pixelate_size = 100.;\n        void main() {\n            vec2 uv = gl_FragCoord.xy/u_resolution;\n            uv = floor(uv*u_pixelate_size)/u_pixelate_size;\n            vec4 color = texture2D(u_tex0, uv);\n            gl_FragColor = color;\n        }";
+/* harmony default export */ var mosaic = (mosaic_fs);
 // CONCATENATED MODULE: ./src/glsl/imgShader/index.js
 /**
  * Created by jijevoid on 2020/11/24
  */
+
 
 
 
@@ -5044,6 +5051,7 @@ function getShaderInstance(name, ctx) {
 arr.push(getShaderInstance("light", light));
 arr.push(getShaderInstance("wave", wave));
 arr.push(getShaderInstance("stroke", stroke));
+arr.push(getShaderInstance("mosaic", mosaic));
 /* harmony default export */ var imgShader = (arr);
 // CONCATENATED MODULE: ./src/glsl/index.js
 
