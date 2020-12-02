@@ -9,7 +9,7 @@
   import GLSLINSTANCE from './../glsl/index'
 
   const gl_header = ` #ifdef GL_ES
-        precision highp float;
+        precision lowp float;
         #endif
         
         uniform sampler2D u_tex0;

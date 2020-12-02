@@ -15,7 +15,7 @@ export default {
   data(){
     return{
       img:require('./assets/juzi.jpg'),
-      type:'mosaic',
+      type:'light',
       height:'300px',
       width:'300px',
     }

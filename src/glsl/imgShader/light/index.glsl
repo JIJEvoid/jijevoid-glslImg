@@ -1,4 +1,4 @@
-void main(void) {
+void main() {
     vec4 vColor = vec4(1.0,1.0,1.0,1.0);
     vec2 st = gl_FragCoord.xy/u_resolution;
     vec4 fg = texture2D(u_tex0, st);
