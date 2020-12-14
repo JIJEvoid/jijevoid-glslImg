@@ -1,4 +1,3 @@
-// rotate position around axis
 vec2 rotate(vec2 p, float a)
 {
     return vec2(p.x * cos(a) - p.y * sin(a), p.x * sin(a) + p.y * cos(a));
@@ -118,7 +117,7 @@ void main()
     // slight vignetting
     v *= exp(-0.6 * length(suv)) * 1.2;
 
-    // use texture2D channel0 for color? why not.
+    // use texture channel0 for color? why not.
     vec3 cexp = texture2D(iChannel0, uv * 0.001).xyz * 3.0 + texture2D(iChannel0, uv * 0.01).xyz;//vec3(1.0, 2.0, 4.0);
     cexp *= 1.4;
 

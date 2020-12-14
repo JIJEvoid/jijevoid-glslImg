@@ -8,7 +8,7 @@
   import GLSLINSTANCE from './../glsl/index'
 
   const gl_header = ` #ifdef GL_ES
-        precision mediump float;
+        precision highp float;
         #endif
         
         uniform sampler2D u_tex0;
@@ -78,7 +78,6 @@
       setTimeout(()=>{
         sandbox.load(this.shaderCtx);
       },1000)
-      
     }
   }
 </script>

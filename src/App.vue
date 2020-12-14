@@ -15,9 +15,9 @@ export default {
   data(){
     return{
       img:require('./assets/juzi.jpg'),
-      type:'texture2',
-      height:'600px',
-      width:'100%',
+      type:'texture3',
+      height:'480px',
+      width:'720px',
     }
   },
   mounted() {
