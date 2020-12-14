@@ -15,9 +15,9 @@ export default {
   data(){
     return{
       img:require('./assets/juzi.jpg'),
-      type:'light',
-      height:'300px',
-      width:'300px',
+      type:'texture2',
+      height:'600px',
+      width:'100%',
     }
   },
   mounted() {
@@ -33,6 +33,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
+  body{
+    margin: 0;
+  }
 </style>

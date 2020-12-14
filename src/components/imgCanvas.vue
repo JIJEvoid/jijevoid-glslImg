@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <canvas ref="canvasContainer" :height="`${height}`"  :width="`${width}`"></canvas>
-  </div>
+    <canvas ref="canvasContainer" :style="{width: width,height: height}"></canvas>
+  
 </template>
 
 <script>
@@ -9,10 +8,11 @@
   import GLSLINSTANCE from './../glsl/index'
 
   const gl_header = ` #ifdef GL_ES
-        precision lowp float;
+        precision mediump float;
         #endif
         
         uniform sampler2D u_tex0;
+        uniform sampler2D iChannel0;
         uniform vec2 u_resolution;
         uniform vec2 u_tex0Resolution;
         uniform vec2 u_mouse;
@@ -74,12 +74,18 @@
       var sandbox = new GlslCanvas(el);
       this.glslInstance = sandbox;
       sandbox.setUniform("u_tex0",this.img);
-      sandbox.load(this.shaderCtx);
+      sandbox.setUniform("iChannel0",require('../assets/noise/noise2.png'));
+      setTimeout(()=>{
+        sandbox.load(this.shaderCtx);
+      },1000)
       
     }
   }
 </script>
 
 <style scoped>
-
+.ctx{
+  width: 100%;
+  height: 100%;
+}
 </style>

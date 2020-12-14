@@ -20,34 +20,32 @@ https://github.com/JIJEvoid/jijevoid-glslImg
 ### who to use
 ```
    <template>
-     <div class="hello">
-       <glslimg :img="img" :type="type" :height="height" :width="width"></glslimg>
+     <div id="app">
+       <imgCanvas :img="img" :type="type" :height="height" :width="width"/>
      </div>
    </template>
    
    <script>
-     import glslimg from '@jijevoid/glslimg'
+   import imgCanvas from './components/imgCanvas'
+   
    export default {
-     name: 'HelloWorld',
-     props: {
-       msg: String
+     name: 'App',
+     components: {
+       imgCanvas
      },
      data(){
        return{
-         img:require('./../assets/logo.png'),
-         type:'wave',
-         height:100,
-         width:100,
+         img:require('./assets/juzi.jpg'),
+         type:'light',
+         height:'300px',
+         width:'300px',
        }
-     },
-     components:{
-       glslimg
      },
      mounted() {
      
      }
    }
-   </script>   
+   </script>
 ```
 
 ### params

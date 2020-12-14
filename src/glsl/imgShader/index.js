@@ -12,6 +12,8 @@ let lightShader = require('./light/index.glsl').default;
 let waveShader = require('./wave/index.glsl').default;
 let strokeShader = require('./stroke/index.glsl').default;
 let mosaicShader = require('./mosaic/index.glsl').default;
+let textShader1 = require('./textureBg/type1.glsl').default;
+let textShader2 = require('./textureBg/type2.glsl').default;
 
 
 
@@ -32,5 +34,7 @@ arr.push(getShaderInstance("light",lightShader));
 arr.push(getShaderInstance("wave",waveShader));
 arr.push(getShaderInstance("stroke",strokeShader));
 arr.push(getShaderInstance("mosaic",mosaicShader));
+arr.push(getShaderInstance("texture1",textShader1));
+arr.push(getShaderInstance("texture2",textShader2));
 
 export default arr;

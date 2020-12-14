@@ -186,6 +186,15 @@ module.exports = !DESCRIPTORS && !fails(function () {
 
 /***/ }),
 
+/***/ "1264":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("void main() {\n    vec4 vColor = vec4(1.0,1.0,1.0,1.0);\n    vec2 st = gl_FragCoord.xy/u_resolution;\n    vec4 fg = texture2D(u_tex0, st);\n    fg.rgb += sin(u_time*3.+ st.x * 2. + st.y * 2.) * 0.2;\n    gl_FragColor = fg * vColor;\n}\n");
+
+/***/ }),
+
 /***/ "159b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -316,32 +325,6 @@ module.exports = function (exec, SKIP_CLOSING) {
 module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on " + it);
   return it;
-};
-
-
-/***/ }),
-
-/***/ "1dde":
-/***/ (function(module, exports, __webpack_require__) {
-
-var fails = __webpack_require__("d039");
-var wellKnownSymbol = __webpack_require__("b622");
-var V8_VERSION = __webpack_require__("2d00");
-
-var SPECIES = wellKnownSymbol('species');
-
-module.exports = function (METHOD_NAME) {
-  // We can't use this feature detection in V8 since it causes
-  // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
-  return V8_VERSION >= 51 || !fails(function () {
-    var array = [];
-    var constructor = array.constructor = {};
-    constructor[SPECIES] = function () {
-      return { foo: 1 };
-    };
-    return array[METHOD_NAME](Boolean).foo !== 1;
-  });
 };
 
 
@@ -547,43 +530,6 @@ module.exports = function (iterator) {
     return anObject(returnMethod.call(iterator)).value;
   }
 };
-
-
-/***/ }),
-
-/***/ "2d00":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var userAgent = __webpack_require__("342f");
-
-var process = global.process;
-var versions = process && process.versions;
-var v8 = versions && versions.v8;
-var match, version;
-
-if (v8) {
-  match = v8.split('.');
-  version = match[0] + match[1];
-} else if (userAgent) {
-  match = userAgent.match(/Edge\/(\d+)/);
-  if (!match || match[1] >= 74) {
-    match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version = match[1];
-  }
-}
-
-module.exports = version && +version;
-
-
-/***/ }),
-
-/***/ "342f":
-/***/ (function(module, exports, __webpack_require__) {
-
-var getBuiltIn = __webpack_require__("d066");
-
-module.exports = getBuiltIn('navigator', 'userAgent') || '';
 
 
 /***/ }),
@@ -933,6 +879,15 @@ module.exports = function (bitmap, value) {
   };
 };
 
+
+/***/ }),
+
+/***/ "5fa4":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("vec3 texsample( float x,  float y, in vec2 st)\n{\n    vec2 uv = (st.xy+ vec2(x, y))/ u_resolution.xy;\n    return texture2D(u_tex0, uv).rgb;\n}\nvec3 count(vec2 st)\n{\n    vec3 sum = texsample(-1., -1., st) * -1.\n    + texsample(-1.,  0., st) *-1.\n    + texsample(-1.,  1., st) *-1.\n    + texsample( 0., -1., st) *-1.\n    + texsample( 0.,  0., st) * 9.\n    + texsample( 0.,  1., st) *-1.\n    + texsample( 1., -1., st) *-1.\n    + texsample( 1.,  0., st) * -1.\n    + texsample( 1.,  1., st) *-1.;\n    return sum;\n}\nvoid main()\n{\n    gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n}\n");
 
 /***/ }),
 
@@ -1766,24 +1721,6 @@ module.exports = !fails(function () {
 
 /***/ }),
 
-/***/ "8418":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var toPrimitive = __webpack_require__("c04e");
-var definePropertyModule = __webpack_require__("9bf2");
-var createPropertyDescriptor = __webpack_require__("5c6c");
-
-module.exports = function (object, key, value) {
-  var propertyKey = toPrimitive(key);
-  if (propertyKey in object) definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value));
-  else object[propertyKey] = value;
-};
-
-
-/***/ }),
-
 /***/ "861d":
 /***/ (function(module, exports) {
 
@@ -1959,74 +1896,6 @@ var NATIVE = isForced.NATIVE = 'N';
 var POLYFILL = isForced.POLYFILL = 'P';
 
 module.exports = isForced;
-
-
-/***/ }),
-
-/***/ "99af":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__("23e7");
-var fails = __webpack_require__("d039");
-var isArray = __webpack_require__("e8b5");
-var isObject = __webpack_require__("861d");
-var toObject = __webpack_require__("7b0b");
-var toLength = __webpack_require__("50c4");
-var createProperty = __webpack_require__("8418");
-var arraySpeciesCreate = __webpack_require__("65f0");
-var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
-var wellKnownSymbol = __webpack_require__("b622");
-var V8_VERSION = __webpack_require__("2d00");
-
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-
-// We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
-
-// `Array.prototype.concat` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-$({ target: 'Array', proto: true, forced: FORCED }, {
-  concat: function concat(arg) { // eslint-disable-line no-unused-vars
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-      if (isConcatSpreadable(E)) {
-        len = toLength(E.length);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty(A, n++, E);
-      }
-    }
-    A.length = n;
-    return A;
-  }
-});
 
 
 /***/ }),
@@ -2354,6 +2223,15 @@ module.exports = {
   findIndex: createMethod(6)
 };
 
+
+/***/ }),
+
+/***/ "b9af":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("vec3 params = vec3(10.0, 0.1, 0.1);\nvec2 center = vec2(0.5, .5);\nfloat itime = u_time/3.0;\nfloat time =(itime - floor(itime));\nvoid main()\n{\n    vec2 st = gl_FragCoord.xy/u_resolution;\n    vec2 texCoord = st;\n    float dist = distance(st, center);\n    if ( (dist <= (time + params.z)) && (dist >= (time - params.z)) )\n    {\n        float diff = (dist - time);\n        float powDiff = 1.0 - pow(abs(diff*params.x), params.y);\n        float diffTime = diff  * powDiff;\n        vec2 diffUV = normalize(st - center);\n        texCoord = st + (diffUV * diffTime);\n    }\n    gl_FragColor = texture2D(u_tex0, texCoord);\n}\n");
 
 /***/ }),
 
@@ -3252,6 +3130,15 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
 
 /***/ }),
 
+/***/ "f693":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("float u_pixelate_size = 100.;\nvoid main() {\n    vec2 uv = gl_FragCoord.xy/u_resolution;\n    uv = floor(uv*u_pixelate_size)/u_pixelate_size;\n    vec4 color = texture2D(u_tex0, uv);\n    gl_FragColor = color;\n}\n");
+
+/***/ }),
+
 /***/ "f772":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3311,12 +3198,12 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c6dc6cb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=778ef349&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b77dcb7a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=a821956e&scoped=true&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('canvas',{ref:"canvasContainer",attrs:{"height":("" + _vm.height),"width":("" + _vm.width)}})])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=778ef349&scoped=true&
+// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=a821956e&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
 var es_array_iterator = __webpack_require__("e260");
@@ -5011,40 +4898,23 @@ window.addEventListener('load', function () {
 
 /* harmony default export */ var GlslCanvas_es = (GlslCanvas_es_GlslCanvas);
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
-
-// CONCATENATED MODULE: ./src/glsl/imgShader/light/index.js
-/**
- * Created by jijevoid on 2020/11/24
- */
-var fs = "        void main(void) {\n" + "           vec4 vColor = vec4(1.0,1.0,1.0,1.0);\n" + "           vec2 st = gl_FragCoord.xy/u_resolution;\n" + "           vec4 fg = texture2D(u_tex0, st);\n" + "           fg.rgb += sin(u_time*3.+ st.x * 2. + st.y * 2.) * 0.2;\n" + "           gl_FragColor = fg * vColor;\n" + "       }";
-/* harmony default export */ var light = (fs);
-// CONCATENATED MODULE: ./src/glsl/imgShader/wave/index.js
-/**
- * Created by jijevoid on 2020/11/24
- */
-var wave_fs = "vec3 params = vec3(10.0, 0.1, 0.1);\n" + "        vec2 center = vec2(0.5, .5);\n" + "        float itime = u_time/3.0;\n" + "        float time =(itime - floor(itime));\n" + "        void main()\n" + "        {\n" + "            vec2 st = gl_FragCoord.xy/u_resolution;\n" + "            vec2 texCoord = st;\n" + "            float dist = distance(st, center);\n" + "            if ( (dist <= (time + params.z)) && (dist >= (time - params.z)) )\n" + "            {\n" + "                float diff = (dist - time);\n" + "                float powDiff = 1.0 - pow(abs(diff*params.x), params.y);\n" + "                float diffTime = diff  * powDiff;\n" + "                vec2 diffUV = normalize(st - center);\n" + "                texCoord = st + (diffUV * diffTime);\n" + "            }\n" + "            gl_FragColor = texture2D(u_tex0, texCoord);\n" + "        }";
-/* harmony default export */ var wave = (wave_fs);
-// CONCATENATED MODULE: ./src/glsl/imgShader/stroke/index.js
-/**
- * Created by jijevoid on 2020/11/24
- */
-var stroke_fs = "vec3 texsample( float x,  float y, in vec2 st)\n" + "      {\n" + "          vec2 uv = (st.xy+ vec2(x, y))/ u_resolution.xy;\n" + "          return texture2D(u_tex0, uv).rgb;\n" + "      }\n" + "      vec3 count(vec2 st)\n" + "      {\n" + "          vec3 sum = texsample(-1., -1., st) * -1.\n" + "          + texsample(-1.,  0., st) *-1.\n" + "          + texsample(-1.,  1., st) *-1.\n" + "          + texsample( 0., -1., st) *-1.\n" + "          + texsample( 0.,  0., st) * 9.\n" + "          + texsample( 0.,  1., st) *-1.\n" + "          + texsample( 1., -1., st) *-1.\n" + "          + texsample( 1.,  0., st) * -1.\n" + "          + texsample( 1.,  1., st) *-1.;\n" + "          return sum;\n" + "      }\n" + "      void main()\n" + "      {\n" + "          gl_FragColor = vec4(count(gl_FragCoord.xy),1.0);\n" + "      }";
-/* harmony default export */ var stroke = (stroke_fs);
-// CONCATENATED MODULE: ./src/glsl/imgShader/mosaic/index.js
-/**
- * Created by jijevoid on 2020/12/1
- */
-var mosaic_fs = "float u_pixelate_size = 100.;\n        void main() {\n            vec2 uv = gl_FragCoord.xy/u_resolution;\n            uv = floor(uv*u_pixelate_size)/u_pixelate_size;\n            vec4 color = texture2D(u_tex0, uv);\n            gl_FragColor = color;\n        }";
-/* harmony default export */ var mosaic = (mosaic_fs);
 // CONCATENATED MODULE: ./src/glsl/imgShader/index.js
 /**
  * Created by jijevoid on 2020/11/24
  */
+// import lightShader from './light/index';
+// import waveShader from './wave/index';
+// import strokeShader from './stroke/index';
+// import mosaicShader from './mosaic/index';
+//
+// let gl = require('./mosaic/mosaic.glsl');
+var lightShader = __webpack_require__("1264").default;
 
+var waveShader = __webpack_require__("b9af").default;
 
+var strokeShader = __webpack_require__("5fa4").default;
 
+var mosaicShader = __webpack_require__("f693").default;
 
 var shaderType = 'imgShader';
 var arr = [];
@@ -5057,20 +4927,19 @@ function getShaderInstance(name, ctx) {
   };
 }
 
-arr.push(getShaderInstance("light", light));
-arr.push(getShaderInstance("wave", wave));
-arr.push(getShaderInstance("stroke", stroke));
-arr.push(getShaderInstance("mosaic", mosaic));
+arr.push(getShaderInstance("light", lightShader));
+arr.push(getShaderInstance("wave", waveShader));
+arr.push(getShaderInstance("stroke", strokeShader));
+arr.push(getShaderInstance("mosaic", mosaicShader));
 /* harmony default export */ var imgShader = (arr);
 // CONCATENATED MODULE: ./src/glsl/index.js
-
-
 /**
  * Created by jijevoid on 2020/11/24
  */
 
+console.log(imgShader);
 var GLSLINSTANCE = [];
-GLSLINSTANCE = GLSLINSTANCE.concat(imgShader);
+GLSLINSTANCE = imgShader;
 /* harmony default export */ var glsl = (GLSLINSTANCE);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=script&lang=js&
 
@@ -5087,7 +4956,7 @@ GLSLINSTANCE = GLSLINSTANCE.concat(imgShader);
 //
 
 
-var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
+var gl_header = " #ifdef GL_ES\n      precision lowp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
 /* harmony default export */ var imgCanvasvue_type_script_lang_js_ = ({
   name: "glslImg",
   props: {
@@ -5265,7 +5134,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "778ef349",
+  "a821956e",
   null
   
 )
@@ -5370,4 +5239,3 @@ module.exports = NATIVE_SYMBOL
 
 /******/ });
 });
-//# sourceMappingURL=jijeimg.umd.js.map
