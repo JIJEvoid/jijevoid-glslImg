@@ -1,23 +1,23 @@
 <template>
-    <canvas ref="canvasContainer" :style="{width: width,height: height}"></canvas>
-  
+  <canvas class="ctx" ref="canvasContainer" :style="{width: width,height: height}" ></canvas>
 </template>
 
 <script>
   import GlslCanvas from 'glslCanvas';
   import GLSLINSTANCE from './../glsl/index'
+  import doc from './map'
 
+  console.log(doc);
   const gl_header = ` #ifdef GL_ES
-        precision highp float;
+        precision lowp float;
         #endif
         
         uniform sampler2D u_tex0;
-        uniform sampler2D iChannel0;
         uniform vec2 u_resolution;
         uniform vec2 u_tex0Resolution;
         uniform vec2 u_mouse;
         uniform float u_time;\n`;
-  
+
   export default {
     name: "glslImg",
     props: {
@@ -26,65 +26,84 @@
         type: String,
         default: ''
       },
-      height:{
+      height: {
         type: String,
-        default: 480+'px',
+        default: 480 + 'px',
       },
-      width:{
+      width: {
         type: String,
-        default: 600+'px',
+        default: 600 + 'px',
       },
-      type:{
+      type: {
         type: String,
         default: "imgShader",
       },
-      customShader:{
+      customHeader: {
         type: String,
         default: "",
       },
-      loop:{
-        type:Boolean,
-        default:true,
+      customBody: {
+        type: String,
+        default: "",
+      },
+      loop: {
+        type: Boolean,
+        default: true,
+      },
+      autoRender: {
+        type: Boolean,
+        default: true,
       }
     },
-    data(){
-      return{
+    data() {
+      return {
         // glsl 代码
-        shaderCtx:'',
+        shaderCtx: '',
         // glslImg map表
-        glslMaps:new Map(),
+        glslMaps: new Map(),
         //
-        glslInstance:null,
+        glslInstance: null,
+        //
+        sandbox: null,
       }
     },
-    created(){
+    created() {
       console.log(GLSLINSTANCE);
-      for(let i=0;i<GLSLINSTANCE.length;i++){
-        this.glslMaps.set(GLSLINSTANCE[i].name,GLSLINSTANCE[i].ctx)
+      for (let i = 0; i < GLSLINSTANCE.length; i++) {
+        this.glslMaps.set(GLSLINSTANCE[i].name, GLSLINSTANCE[i].ctx)
       }
     },
-    
+    doc: doc,
     mounted() {
       let el = this.$refs.canvasContainer;
-      if(this.type!='customShader'){
-        this.shaderCtx = this.glslMaps.get(this.type)?gl_header+this.glslMaps.get(this.type):gl_header+GLSLINSTANCE[1].ctx;
-      }else{
-        this.shaderCtx = gl_header+this.customShader;
+      if (this.type != 'customShader') {
+        this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.customHeader + this.glslMaps.get(this.type) : gl_header + this.customHeader + GLSLINSTANCE[1].ctx;
+      } else {
+        this.shaderCtx = gl_header + this.customHeader + this.customBody;
       }
       var sandbox = new GlslCanvas(el);
+      this.sandbox = sandbox;
       this.glslInstance = sandbox;
-      sandbox.setUniform("u_tex0",this.img);
-      sandbox.setUniform("iChannel0",require('../assets/noise/noise2.png'));
-      setTimeout(()=>{
-        sandbox.load(this.shaderCtx);
-      },1000)
+      sandbox.setUniform("u_tex0", this.img);
+      //sandbox.load(this.shaderCtx);
+      if(this.autoRender){
+        this.$nextTick(()=>{
+          this.init();
+        })
+      }
+      
+    },
+    methods: {
+      init() {
+        this.sandbox.load(this.shaderCtx);
+      }
     }
   }
 </script>
 
 <style scoped>
-.ctx{
-  width: 100%;
-  height: 100%;
-}
+  .ctx {
+    width: 300px;
+    height: 300px;
+  }
 </style>
