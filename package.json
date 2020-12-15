@@ -16,7 +16,8 @@
     "vue": "^2.6.11"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/assets/*"
   ],
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
