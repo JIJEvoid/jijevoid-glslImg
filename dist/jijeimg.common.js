@@ -160,6 +160,17 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 
 /***/ }),
 
+/***/ "09ef":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ac86");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
 /***/ "0cfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -174,6 +185,15 @@ module.exports = !DESCRIPTORS && !fails(function () {
   }).a != 7;
 });
 
+
+/***/ }),
+
+/***/ "0f5a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("float field(in vec3 p) {\n    float strength = 7. + .03 * log(1.e-6 + fract(sin(u_time) * 4373.11));\n    float accum = 0.;\n    float prev = 0.;\n    float tw = 0.;\n    for (int i = 0; i < 32; ++i) {\n        float mag = dot(p, p);\n        p = abs(p) / mag + vec3(-.5, -.4, -1.5);\n        float w = exp(-float(i) / 7.);\n        accum += w * exp(-strength * pow(abs(mag - prev), 2.3));\n        tw += w;\n        prev = mag;\n    }\n    return max(0., 5. * accum / tw - .7);\n}\n\nvoid main() {\n    vec2 uv = 2. * gl_FragCoord.xy / u_resolution.xy - 1.;\n    vec2 uvs = uv * u_resolution.xy / max(u_resolution.x, u_resolution.y);\n    vec3 p = vec3(uvs / 4., 0) + vec3(1., -1.3, 0.);\n    p += .2 * vec3(sin(u_time / 16.), sin(u_time / 12.),  sin(u_time / 128.));\n    float t = field(p);\n    float v = (1. - exp((abs(uv.x) - 1.) * 6.)) * (1. - exp((abs(uv.y) - 1.) * 6.));\n    gl_FragColor = mix(.4, 1., v) * vec4(1.8 * t * t * t, 1.4 * t * t, t, 1.0);\n}\n");
 
 /***/ }),
 
@@ -522,6 +542,15 @@ module.exports = function (iterator) {
   }
 };
 
+
+/***/ }),
+
+/***/ "2f54":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("const float tmax = 20.0;\n\nfloat hash(float n) {\n    return fract(sin(n)*43758.5453);\n}\n\nvec3 hash(vec3 p){\n\n    float n = sin(dot(p, vec3(7, 157, 113)));\n    return fract(vec3(2097152, 262144, 32768)*n);\n}\n\nfloat noise(float g) {\n    float p = floor(g);\n    float f = fract(g);\n\n    return mix(hash(p), hash(p + 1.0), f);\n}\n\nfloat voronoi(vec3 x) {\n    vec3 p = floor(x);\n    vec3 f = fract(x);\n\n    vec2 res = vec2(8.0);\n\n    for(int i = -1; i <= 1; i++)\n    for(int j = -1; j <= 1; j++)\n    for(int k = -1; k <= 1; k++) {\n        vec3 g = vec3(float(i), float(j), float(k));\n        vec3 r = g + hash(p + g) - f;\n\n        float d = max(abs(r.x), max(abs(r.y), abs(r.z)));\n\n        if(d < res.x) {\n            res.y = res.x;\n            res.x = d;\n        } else if(d < res.y) {\n            res.y = d;\n        }\n    }\n\n    return res.y - res.x;\n}\n\nvec2 path(float z) {\n    return vec2(cos(z/8.0)*sin(z/12.0)*12.0, 0.0);\n}\n\nfloat map(vec3 p) {\n    vec4 q = vec4(p, 1.0);\n    q.x += 1.0;\n\n    for(int i = 0; i < 6; i++) {\n        q.xyz = -1.0 + 2.0*fract(0.5 + 0.5*q.xyz);\n        q = 1.2*q/max(dot(q.xyz, q.xyz), 0.1);\n    }\n\n    vec2 tun = abs(p.xy - path(p.z))*vec2(0.6, 0.5);\n\n    return min(0.25*abs(q.y)/q.w, 1.0 - max(tun.x, tun.y));\n}\n\nfloat march(vec3 ro, vec3 rd, float mx) {\n    float t = 0.0;\n\n    for(int i = 0; i < 200; i++) {\n        float d = map(ro + rd*t);\n        if(d < 0.001 || t >= mx) break;\n        t += d*0.75;\n    }\n\n    return t;\n}\n\nvec3 normal(vec3 p) {\n    vec2 h = vec2(0.001, 0.0);\n    vec3 n = vec3(\n    map(p + h.xyy) - map(p - h.xyy),\n    map(p + h.yxy) - map(p - h.yxy),\n    map(p + h.yyx) - map(p - h.yyx)\n    );\n    return normalize(n);\n}\n\nfloat ao(vec3 p, vec3 n) {\n    float o = 0.0, s = 0.005;\n    for(int i = 0; i< 15; i++) {\n        float d = map(p + n*s);\n        o += (s - d);\n        s += s/float(i + 1);\n    }\n\n    return 1.0 - clamp(o, 0.0, 1.0);\n}\n\nvec3 material(vec3 p) {\n    float v = 0.0;\n    float a = 0.7, f = 1.0;\n\n    for(int i = 0; i < 4; i++) {\n        float v1 = voronoi(p*f + 5.0);\n        float v2 = 0.0;\n\n        if(i > 0) {\n            v2 = voronoi(p*f*0.1 + 50.0 + 0.15*u_time);\n\n            float va = 0.0, vb = 0.0;\n            va = 1.0 - smoothstep(0.0, 0.1, v1);\n            vb = 1.0 - smoothstep(0.0, 0.08, v2);\n            v += a*pow(va*(0.5 + vb), 4.0);\n        }\n\n        v1 = 1.0 - smoothstep(0.0, 0.3, v1);\n        v2 =  a*noise(v1*5.5 + 0.1);\n\n        v += v2;\n\n        f *= 3.0;\n        a *= 0.5;\n    }\n\n    return vec3(pow(v, 6.0), pow(v, 4.0), pow(v, 2.0))*2.0;\n}\n\nmat3 camera(vec3 eye, vec3 lat) {\n    vec3 ww = normalize(lat - eye);\n    vec3 uu = normalize(cross(vec3(0, 1, 0), ww));\n    vec3 vv = normalize(cross(ww, uu));\n\n    return mat3(uu, vv, ww);\n}\n\nvoid main() {\n    vec2 uv = -1.0 + 2.0*(gl_FragCoord.xy/u_resolution.xy);\n    uv.x *= u_resolution.x/u_resolution.y;\n\n    vec3 col = vec3(0);\n\n    vec3 ro = vec3(0.63*cos(u_time*0.1), 0.67, u_time*0.5);\n    vec3 la = ro + vec3(0, 0, 0.3);\n\n    ro.xy += path(ro.z);\n    la.xy += path(la.z);\n    vec3 rd = normalize(camera(ro, la)*vec3(uv, 1.97));\n\n    float i = march(ro, rd, tmax);\n    if(i < tmax) {\n        vec3 pos = ro + rd*i;\n        vec3 nor = normal(pos);\n\n        vec3 rig = ro + vec3(0, 0, 3);\n        rig.xy += path(rig.z);\n        vec3 key = normalize(pos - rig);\n\n        col  = 0.1*vec3(0, 0, 1);\n        col += 0.9*clamp(dot(key, nor), 0.0, 1.0)*vec3(1.0/max(1.0, i), 1, 1);\n        col += 0.4*clamp(dot(-key, nor), 0.0, 1.0)*vec3(1.0/max(1.0, i), 1, 1);\n\n        col *= material(pos);\n    }\n\n    col = mix(col, vec3(0), 1.0 - exp(-0.6*i));\n\n    col = 1.0 - exp(-0.5*col);\n    col = pow(abs(col), vec3(1.0/2.2));\n\n    gl_FragColor = vec4(col, 1);\n}\n");
 
 /***/ }),
 
@@ -1354,6 +1383,15 @@ module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
 
 /***/ }),
 
+/***/ "6dfc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("vec2 rotate(vec2 p, float a)\n{\n    return vec2(p.x * cos(a) - p.y * sin(a), p.x * sin(a) + p.y * cos(a));\n}\n\n// 1D random numbers\nfloat rand(float n)\n{\n    return fract(sin(n) * 43758.5453123);\n}\n\n// 2D random numbers\nvec2 rand2(in vec2 p)\n{\n    return fract(vec2(sin(p.x * 591.32 + p.y * 154.077), cos(p.x * 391.32 + p.y * 49.077)));\n}\n\n// 1D noise\nfloat noise1(float p)\n{\n    float fl = floor(p);\n    float fc = fract(p);\n    return mix(rand(fl), rand(fl + 1.0), fc);\n}\n\n// voronoi distance noise, based on iq's articles\nfloat voronoi(in vec2 x)\n{\n    vec2 p = floor(x);\n    vec2 f = fract(x);\n\n    vec2 res = vec2(8.0);\n    for(int j = -1; j <= 1; j ++)\n    {\n        for(int i = -1; i <= 1; i ++)\n        {\n            vec2 b = vec2(i, j);\n            vec2 r = vec2(b) - f + rand2(p + b);\n\n            // chebyshev distance, one of many ways to do this\n            float d = max(abs(r.x), abs(r.y));\n\n            if(d < res.x)\n            {\n                res.y = res.x;\n                res.x = d;\n            }\n            else if(d < res.y)\n            {\n                res.y = d;\n            }\n        }\n    }\n    return res.y - res.x;\n}\n\n\n\nvoid main()\n{\n    float flicker = noise1(u_time * 2.0) * 0.8 + 0.4;\n\n    vec2 uv = gl_FragCoord.xy / u_resolution.xy;\n    uv = (uv - 0.5) * 2.0;\n    vec2 suv = uv;\n    uv.x *= u_resolution.x / u_resolution.y;\n\n\n    float v = 0.0;\n\n    // that looks highly interesting:\n    //v = 1.0 - length(uv) * 1.3;\n\n\n    // a bit of camera movement\n    uv *= 0.6 + sin(u_time * 0.1) * 0.4;\n    uv = rotate(uv, sin(u_time * 0.3) * 1.0);\n    uv += u_time * 0.4;\n\n\n    // add some noise octaves\n    float a = 0.6, f = 1.0;\n\n    for(int i = 0; i < 3; i ++) // 4 octaves also look nice, its getting a bit slow though\n    {\n        float v1 = voronoi(uv * f + 5.0);\n        float v2 = 0.0;\n\n        // make the moving electrons-effect for higher octaves\n        if(i > 0)\n        {\n            // of course everything based on voronoi\n            v2 = voronoi(uv * f * 0.5 + 50.0 + u_time);\n\n            float va = 0.0, vb = 0.0;\n            va = 1.0 - smoothstep(0.0, 0.1, v1);\n            vb = 1.0 - smoothstep(0.0, 0.08, v2);\n            v += a * pow(va * (0.5 + vb), 2.0);\n        }\n\n        // make sharp edges\n        v1 = 1.0 - smoothstep(0.0, 0.3, v1);\n\n        // noise is used as intensity map\n        v2 = a * (noise1(v1 * 5.5 + 0.1));\n\n        // octave 0's intensity changes a bit\n        if(i == 0)\n        v += v2 * flicker;\n        else\n        v += v2;\n\n        f *= 3.0;\n        a *= 0.7;\n    }\n\n    // slight vignetting\n    v *= exp(-0.6 * length(suv)) * 1.2;\n\n    // use texture channel0 for color? why not.\n    vec3 cexp = texture2D(iChannel0, uv * 0.001).xyz * 3.0 + texture2D(iChannel0, uv * 0.01).xyz;//vec3(1.0, 2.0, 4.0);\n    cexp *= 1.4;\n\n    // old blueish color set\n    //vec3 cexp = vec3(6.0, 4.0, 2.0);\n\n    vec3 col = vec3(pow(v, cexp.x), pow(v, cexp.y), pow(v, cexp.z)) * 2.0;\n\n    gl_FragColor = vec4(col, 1.0);\n}\n");
+
+/***/ }),
+
 /***/ "6eeb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1975,6 +2013,13 @@ module.exports = function (argument) {
 
 /***/ }),
 
+/***/ "ac86":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "ae40":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2097,6 +2142,13 @@ if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
   });
 }
 
+
+/***/ }),
+
+/***/ "b5c6":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/noise2.11f09eda.png";
 
 /***/ }),
 
@@ -3189,12 +3241,12 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b77dcb7a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=a821956e&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('canvas',{ref:"canvasContainer",attrs:{"height":("" + _vm.height),"width":("" + _vm.width)}})])}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b77dcb7a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=5455f0b8&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('canvas',{ref:"canvasContainer",style:({width: _vm.width,height: _vm.height})})}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=a821956e&scoped=true&
+// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=5455f0b8&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
 var es_array_iterator = __webpack_require__("e260");
@@ -4907,6 +4959,12 @@ var strokeShader = __webpack_require__("5fa4").default;
 
 var mosaicShader = __webpack_require__("f693").default;
 
+var textShader1 = __webpack_require__("0f5a").default;
+
+var textShader2 = __webpack_require__("6dfc").default;
+
+var textShader3 = __webpack_require__("2f54").default;
+
 var shaderType = 'imgShader';
 var arr = [];
 
@@ -4922,6 +4980,9 @@ arr.push(getShaderInstance("light", lightShader));
 arr.push(getShaderInstance("wave", waveShader));
 arr.push(getShaderInstance("stroke", strokeShader));
 arr.push(getShaderInstance("mosaic", mosaicShader));
+arr.push(getShaderInstance("texture1", textShader1));
+arr.push(getShaderInstance("texture2", textShader2));
+arr.push(getShaderInstance("texture3", textShader3));
 /* harmony default export */ var imgShader = (arr);
 // CONCATENATED MODULE: ./src/glsl/index.js
 /**
@@ -4944,10 +5005,9 @@ GLSLINSTANCE = imgShader;
 //
 //
 //
-//
 
 
-var gl_header = " #ifdef GL_ES\n      precision lowp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
+var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform sampler2D iChannel0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
 /* harmony default export */ var imgCanvasvue_type_script_lang_js_ = ({
   name: "glslImg",
   props: {
@@ -4995,6 +5055,8 @@ var gl_header = " #ifdef GL_ES\n      precision lowp float;\n      #endif\n     
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     var el = this.$refs.canvasContainer;
 
     if (this.type != 'customShader') {
@@ -5006,11 +5068,17 @@ var gl_header = " #ifdef GL_ES\n      precision lowp float;\n      #endif\n     
     var sandbox = new GlslCanvas_es(el);
     this.glslInstance = sandbox;
     sandbox.setUniform("u_tex0", this.img);
-    sandbox.load(this.shaderCtx);
+    sandbox.setUniform("iChannel0", __webpack_require__("b5c6"));
+    setTimeout(function () {
+      sandbox.load(_this.shaderCtx);
+    }, 1000);
   }
 });
 // CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_imgCanvasvue_type_script_lang_js_ = (imgCanvasvue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./src/components/imgCanvas.vue?vue&type=style&index=0&id=5455f0b8&scoped=true&lang=css&
+var imgCanvasvue_type_style_index_0_id_5455f0b8_scoped_true_lang_css_ = __webpack_require__("09ef");
+
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -5117,6 +5185,7 @@ function normalizeComponent (
 
 
 
+
 /* normalize component */
 
 var component = normalizeComponent(
@@ -5125,7 +5194,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "a821956e",
+  "5455f0b8",
   null
   
 )
