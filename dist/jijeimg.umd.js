@@ -169,17 +169,6 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 
 /***/ }),
 
-/***/ "09ef":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ac86");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_5455f0b8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
 /***/ "0cfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -652,6 +641,13 @@ defineIterator(String, 'String', function (iterated) {
   return { value: point, done: false };
 });
 
+
+/***/ }),
+
+/***/ "3de4":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -1989,6 +1985,17 @@ module.exports = function (IteratorConstructor, NAME, next) {
 
 /***/ }),
 
+/***/ "a143":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_d88528d4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("3de4");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_d88528d4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_imgCanvas_vue_vue_type_style_index_0_id_d88528d4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
 /***/ "a640":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2019,13 +2026,6 @@ module.exports = function (argument) {
   return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor : ceil)(argument);
 };
 
-
-/***/ }),
-
-/***/ "ac86":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -2151,13 +2151,6 @@ if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
   });
 }
 
-
-/***/ }),
-
-/***/ "b5c6":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/noise2.11f09eda.png";
 
 /***/ }),
 
@@ -3250,12 +3243,12 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b77dcb7a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=5455f0b8&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('canvas',{ref:"canvasContainer",style:({width: _vm.width,height: _vm.height})})}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b77dcb7a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=template&id=d88528d4&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('canvas',{ref:"canvasContainer",staticClass:"ctx",style:({width: _vm.width,height: _vm.height})})}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=5455f0b8&scoped=true&
+// CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=template&id=d88528d4&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
 var es_array_iterator = __webpack_require__("e260");
@@ -5002,6 +4995,29 @@ console.log(imgShader);
 var GLSLINSTANCE = [];
 GLSLINSTANCE = imgShader;
 /* harmony default export */ var glsl = (GLSLINSTANCE);
+// CONCATENATED MODULE: ./src/components/map.js
+
+
+
+
+
+
+/**
+ * Created by jijevoid on 2020/12/15
+ */
+//用于解释该插件的使用文档
+
+var typeMap = new Map();
+
+for (var map_i = 0; map_i < imgShader.length; map_i++) {
+  typeMap.set(imgShader[map_i].ctx, imgShader[map_i]);
+}
+
+var doc = {
+  des: '一款封装片源着色器的vue插件',
+  typeMap: typeMap
+};
+/* harmony default export */ var map = (doc);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/imgCanvas.vue?vue&type=script&lang=js&
 
 
@@ -5013,10 +5029,11 @@ GLSLINSTANCE = imgShader;
 //
 //
 //
-//
 
 
-var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform sampler2D iChannel0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
+
+console.log(map);
+var gl_header = " #ifdef GL_ES\n      precision lowp float;\n      #endif\n      \n      uniform sampler2D u_tex0;\n      uniform vec2 u_resolution;\n      uniform vec2 u_tex0Resolution;\n      uniform vec2 u_mouse;\n      uniform float u_time;\n";
 /* harmony default export */ var imgCanvasvue_type_script_lang_js_ = ({
   name: "glslImg",
   props: {
@@ -5037,11 +5054,19 @@ var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n    
       type: String,
       default: "imgShader"
     },
-    customShader: {
+    customHeader: {
+      type: String,
+      default: ""
+    },
+    customBody: {
       type: String,
       default: ""
     },
     loop: {
+      type: Boolean,
+      default: true
+    },
+    autoRender: {
       type: Boolean,
       default: true
     }
@@ -5053,7 +5078,9 @@ var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n    
       // glslImg map表
       glslMaps: new Map(),
       //
-      glslInstance: null
+      glslInstance: null,
+      //
+      sandbox: null
     };
   },
   created: function created() {
@@ -5063,30 +5090,39 @@ var gl_header = " #ifdef GL_ES\n      precision highp float;\n      #endif\n    
       this.glslMaps.set(glsl[i].name, glsl[i].ctx);
     }
   },
+  doc: map,
   mounted: function mounted() {
     var _this = this;
 
     var el = this.$refs.canvasContainer;
 
     if (this.type != 'customShader') {
-      this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.glslMaps.get(this.type) : gl_header + glsl[1].ctx;
+      this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.customHeader + this.glslMaps.get(this.type) : gl_header + this.customHeader + glsl[1].ctx;
     } else {
-      this.shaderCtx = gl_header + this.customShader;
+      this.shaderCtx = gl_header + this.customHeader + this.customBody;
     }
 
     var sandbox = new GlslCanvas_es(el);
+    this.sandbox = sandbox;
     this.glslInstance = sandbox;
-    sandbox.setUniform("u_tex0", this.img);
-    sandbox.setUniform("iChannel0", __webpack_require__("b5c6"));
-    setTimeout(function () {
-      sandbox.load(_this.shaderCtx);
-    }, 1000);
+    sandbox.setUniform("u_tex0", this.img); //sandbox.load(this.shaderCtx);
+
+    if (this.autoRender) {
+      this.$nextTick(function () {
+        _this.init();
+      });
+    }
+  },
+  methods: {
+    init: function init() {
+      this.sandbox.load(this.shaderCtx);
+    }
   }
 });
 // CONCATENATED MODULE: ./src/components/imgCanvas.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_imgCanvasvue_type_script_lang_js_ = (imgCanvasvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/imgCanvas.vue?vue&type=style&index=0&id=5455f0b8&scoped=true&lang=css&
-var imgCanvasvue_type_style_index_0_id_5455f0b8_scoped_true_lang_css_ = __webpack_require__("09ef");
+// EXTERNAL MODULE: ./src/components/imgCanvas.vue?vue&type=style&index=0&id=d88528d4&scoped=true&lang=css&
+var imgCanvasvue_type_style_index_0_id_d88528d4_scoped_true_lang_css_ = __webpack_require__("a143");
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -5203,7 +5239,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "5455f0b8",
+  "d88528d4",
   null
   
 )
