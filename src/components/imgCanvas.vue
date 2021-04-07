@@ -6,8 +6,9 @@
   import GlslCanvas from 'glslCanvas';
   import GLSLINSTANCE from './../glsl/index'
   import doc from './map'
+  //import * as THREE  from 'three';
 
-  console.log(doc);
+  //console.log(THREE);
   const gl_header = ` #ifdef GL_ES
         precision lowp float;
         #endif

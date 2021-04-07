@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "glslCanvas": "^0.1.7",
     "raw-loader": "^4.0.2",
+    "three": "^0.127.0",
     "vue": "^2.6.11"
   },
   "files": [
