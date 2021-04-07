@@ -48,18 +48,11 @@ const init = async (THREE, options) => {
     lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
     uniforms['iChannel0'] = lavaTexture;
   }
-  //对纹理进行平铺
 
   // lavaTexture.repeat.set( 200, 200 );
-
-
-
-
   window.uniforms = uniforms;
   // 材质
 
-  console.log("options is -----");
-  console.log(options);
   var vertexShader = 'varying vec2 vUv;\n' +
     '    \n' +
     '    void main() {\n' +
@@ -70,8 +63,6 @@ const init = async (THREE, options) => {
     '        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n' +
     '    }'
   var fragmentShader =  gl_header + options.customHeader + options.customBody;
-  console.log(fragmentShader);
-
   var material = new THREE.ShaderMaterial({
     // 着色器 uniform 参数
     uniforms: uniforms,
