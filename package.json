@@ -10,11 +10,11 @@
     "package": "vue-cli-service build --target lib --name jijeimg ./src/components/index.js"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "3.6.5",
     "glslCanvas": "^0.1.7",
     "raw-loader": "^4.0.2",
     "three": "^0.127.0",
-    "vue": "^2.6.11"
+    "vue": "2.6.11"
   },
   "files": [
     "dist/*",
@@ -27,7 +27,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.11"
   },
   "eslintConfig": {
     "root": true,

@@ -1,14 +1,16 @@
 <template>
-  <canvas class="ctx" ref="canvasContainer" :style="{width: width,height: height}" ></canvas>
+  <canvas v-if="renderType=='glsl'" class="ctx" ref="canvasContainer" :style="{width: width,height: height}" ></canvas>
+  <div v-else id="scene" ref="canvasContainer">
+  </div>
 </template>
 
 <script>
   import GlslCanvas from 'glslCanvas';
   import GLSLINSTANCE from './../glsl/index'
   import doc from './map'
-  //import * as THREE  from 'three';
+  import * as THREE  from 'three';
+  import threeRender  from './../utils/index';
 
-  //console.log(THREE);
   const gl_header = ` #ifdef GL_ES
         precision lowp float;
         #endif
@@ -22,6 +24,10 @@
   export default {
     name: "glslImg",
     props: {
+      renderType:{
+        type: String,
+        default: 'three',// glsl || three 两种渲染器
+      },
       // 图片
       img: {
         type: String,
@@ -69,34 +75,54 @@
       }
     },
     created() {
-      console.log(GLSLINSTANCE);
       for (let i = 0; i < GLSLINSTANCE.length; i++) {
         this.glslMaps.set(GLSLINSTANCE[i].name, GLSLINSTANCE[i].ctx)
       }
     },
-    doc: doc,
     mounted() {
-      let el = this.$refs.canvasContainer;
-      if (this.type != 'customShader') {
-        this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.customHeader + this.glslMaps.get(this.type) : gl_header + this.customHeader + GLSLINSTANCE[1].ctx;
-      } else {
-        this.shaderCtx = gl_header + this.customHeader + this.customBody;
+      if(this.renderType=='glsl'){
+        this.glsl_render();
+      }else{
+        this.three_render();
       }
-      var sandbox = new GlslCanvas(el);
-      this.sandbox = sandbox;
-      this.glslInstance = sandbox;
-      sandbox.setUniform("u_tex0", this.img);
-      //sandbox.load(this.shaderCtx);
-      if(this.autoRender){
-        this.$nextTick(()=>{
-          this.init();
-        })
-      }
-      
     },
     methods: {
       init() {
         this.sandbox.load(this.shaderCtx);
+      },
+      
+      glsl_render(){
+        let el = this.$refs.canvasContainer;
+        if (this.type != 'customShader') {
+          this.shaderCtx = this.glslMaps.get(this.type) ? gl_header + this.customHeader + this.glslMaps.get(this.type) : gl_header + this.customHeader + GLSLINSTANCE[1].ctx;
+        } else {
+          this.shaderCtx = gl_header + this.customHeader + this.customBody;
+        }
+        var sandbox = new GlslCanvas(el);
+        this.sandbox = sandbox;
+        this.glslInstance = sandbox;
+        sandbox.setUniform("u_tex0", this.img);
+        //sandbox.load(this.shaderCtx);
+        if(this.autoRender){
+          this.$nextTick(()=>{
+            this.init();
+          })
+        }
+      },
+      
+      three_render(){
+        let options = {
+          // 图片
+          img: this.img,
+          height: this.height,
+          width: this.width,
+          customHeader: this.customHeader,
+          customBody: this.customBody,
+          loop: this.loop,
+          autoRender: this.autoRender,
+          el:this.$refs.canvasContainer
+        };
+        threeRender(THREE,options);
       }
     }
   }
