@@ -23,6 +23,7 @@
 
   export default {
     name: "glslImg",
+    doc:doc,
     props: {
       renderType:{
         type: String,
@@ -112,7 +113,6 @@
       
       three_render(){
         let options = {
-          // 图片
           img: this.img,
           height: this.height,
           width: this.width,
