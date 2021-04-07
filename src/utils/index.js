@@ -29,20 +29,32 @@ const init = async (THREE, options) => {
   var camera = new THREE.PerspectiveCamera(45, width / height, 1, 2000);
   camera.position.set(0, 0, 360);
   scene.add(camera);
+// 传递给着色器的uniform参数
+  var uniforms = {
+    iTime: {value: 0.0},
+    iResolution: {value: new THREE.Vector2(width * 1.0, height * 1.0)},
+    // iChannel0: {value: lavaTexture},
+    iArg0: {value: 5.0},
+  };
 
+  if(typeof(options.img) == 'object'){
+    for (var i in options.img){
+      var lavaTexture = THREE.ImageUtils.loadTexture(options.img[i]);
+      lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
+      uniforms['iChannel'+i] = lavaTexture;
+    }
+  }else{
+    var lavaTexture = THREE.ImageUtils.loadTexture(options.img);
+    lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
+    uniforms['iChannel0'] = lavaTexture;
+  }
   //对纹理进行平铺
-  var lavaTexture = THREE.ImageUtils.loadTexture(options.img);
-  lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
+
   // lavaTexture.repeat.set( 200, 200 );
 
 
-  // 传递给着色器的uniform参数
-  var uniforms = {
-    iTime: {value: 1.0},
-    iResolution: {value: new THREE.Vector2(width * 1.0, height * 1.0)},
-    iChannel0: {value: lavaTexture},
-    iArg0: {value: 5.0},
-  };
+
+
   window.uniforms = uniforms;
   // 材质
 

@@ -65,7 +65,6 @@
     '        vec4 color = texture2D(iChannel0,st);\n' +
     '        vec4 sum = vec4( 0.0 );\n' +
     '    \n' +
-    '        //纵向高斯模糊\n' +
     '        sum += texture2D( iChannel0, vec2( st.x, st.y - 4.0 * v ) ) * (0.051/2.0);\n' +
     '        sum += texture2D( iChannel0, vec2( st.x, st.y - 3.0 * v ) ) * (0.0918/2.0);\n' +
     '        sum += texture2D( iChannel0, vec2( st.x, st.y - 2.0 * v ) ) * (0.12245/2.0);\n' +
@@ -76,7 +75,6 @@
     '        sum += texture2D( iChannel0, vec2( st.x, st.y + 3.0 * v ) ) * (0.0918/2.0);\n' +
     '        sum += texture2D( iChannel0, vec2( st.x, st.y + 4.0 * v ) ) * (0.051/2.0);\n' +
     '        \n' +
-    '        //横向高斯模糊\n' +
     '        sum += texture2D( iChannel0, vec2( st.x - 4.0 * h, st.y ) ) * (0.051/2.0);\n' +
     '        sum += texture2D( iChannel0, vec2( st.x - 3.0 * h, st.y ) ) * (0.0918/2.0);\n' +
     '        sum += texture2D( iChannel0, vec2( st.x - 2.0 * h, st.y ) ) * (0.12245/2.0);\n' +
