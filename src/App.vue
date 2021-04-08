@@ -97,8 +97,8 @@
       return {
         img: require('./assets/juzi.jpg'),
         type: 'custom',
-        height: '480px',
-        width: '720px',
+        height: '100%',
+        width: '100%',
         customHeader: '',
         customBody:str ,
         autoRender: false

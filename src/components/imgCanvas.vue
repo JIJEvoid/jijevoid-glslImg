@@ -1,6 +1,6 @@
 <template>
   <canvas v-if="renderType=='glsl'" class="ctx" ref="canvasContainer" :style="{width: width,height: height}" ></canvas>
-  <div v-else id="scene" ref="canvasContainer">
+  <div v-else id="scene" ref="canvasContainer" :style="{width: width,height: height}">
   </div>
 </template>
 
@@ -27,7 +27,7 @@
     props: {
       renderType:{
         type: String,
-        default: 'glsl',// glsl || three 两种渲染器
+        default: 'three',// glsl || three 两种渲染器
       },
       // 图片
       img: {
@@ -118,8 +118,8 @@
       three_render(){
         let options = {
           img: this.img,
-          height: this.height,
-          width: this.width,
+          width: this.$refs.canvasContainer.clientWidth,
+          height: this.$refs.canvasContainer.clientHeight,
           customHeader: this.customHeader,
           customBody: this.customBody,
           loop: this.loop,
