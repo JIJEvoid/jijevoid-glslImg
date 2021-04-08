@@ -9,7 +9,7 @@
   import GLSLINSTANCE from './../glsl/index'
   import doc from './map'
   import * as THREE  from 'three';
-  import threeRender  from './../utils/index';
+  import {init,uniforms}  from './../utils/index';
 
   const gl_header = ` #ifdef GL_ES
         precision lowp float;
@@ -61,6 +61,10 @@
       autoRender: {
         type: Boolean,
         default: true,
+      },
+      iTime:{
+        type: Number,
+        default: 0,
       }
     },
     data() {
@@ -122,7 +126,7 @@
           autoRender: this.autoRender,
           el:this.$refs.canvasContainer
         };
-        threeRender(THREE,options);
+        init(THREE,options);
       }
     }
   }

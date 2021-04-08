@@ -11,6 +11,7 @@ const gl_header = ` #ifdef GL_ES
         uniform vec2 u_tex0Resolution;
         uniform vec2 u_mouse;
         uniform float u_time;\n`;
+let uniforms;
 
 const init = async (THREE, options) => {
   var width = parseInt(options.width); // 画布的宽度
@@ -29,8 +30,8 @@ const init = async (THREE, options) => {
   var camera = new THREE.PerspectiveCamera(45, width / height, 1, 2000);
   camera.position.set(0, 0, 360);
   scene.add(camera);
-// 传递给着色器的uniform参数
-  var uniforms = {
+  // 传递给着色器的uniform参数
+  uniforms = {
     iTime: {value: 0.0},
     iResolution: {value: new THREE.Vector2(width * 1.0, height * 1.0)},
     // iChannel0: {value: lavaTexture},
@@ -81,6 +82,7 @@ const init = async (THREE, options) => {
 
   /* 利用requestAnimationFrame实现动画 */
   var clock = new THREE.Clock(); // 时钟
+
   (function animate() {
     requestAnimationFrame(animate);
 
@@ -91,5 +93,5 @@ const init = async (THREE, options) => {
 
 }
 
-export default init;
+export {init,uniforms};
 
