@@ -42,12 +42,12 @@ const init = async (THREE, options) => {
     for (var i in options.img){
       var lavaTexture = THREE.ImageUtils.loadTexture(options.img[i]);
       lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
-      uniforms['iChannel'+i] = lavaTexture;
+      uniforms['iChannel'+i] = {value:lavaTexture};
     }
   }else{
     var lavaTexture = THREE.ImageUtils.loadTexture(options.img);
     lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
-    uniforms['iChannel0'] = lavaTexture;
+    uniforms['iChannel0'] = {value:lavaTexture};
   }
 
   // lavaTexture.repeat.set( 200, 200 );

@@ -27,7 +27,7 @@
     props: {
       renderType:{
         type: String,
-        default: 'three',// glsl || three 两种渲染器
+        default: 'glsl',// glsl || three 两种渲染器
       },
       // 图片
       img: {
