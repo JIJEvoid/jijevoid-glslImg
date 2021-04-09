@@ -3,7 +3,6 @@
  */
 import imgList from './imgShader/index';
 
-console.log(imgList);
 let GLSLINSTANCE=[];
 
 GLSLINSTANCE = imgList;
